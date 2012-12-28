@@ -54,11 +54,13 @@ class AdminSite(object):
             # Add some attributes expected by Django to MongoEngine fields
             for name, field in model._fields.items():
                 if not hasattr(field, 'rel'):
-                    field.rel = None
+                    field.rel = None # django-admin needs this
                 if not hasattr(field, 'flatchoices'):
-                    field.flatchoices = None
+                    field.flatchoices = None # django-admin needs this
                 if not hasattr(field, 'verbose_name') or not field.verbose_name:
-                    field.verbose_name = name
+                    field.verbose_name = name # default to the field name for column headers
+                if not hasattr(field, 'help_text') or field.help_text is None:
+                    field.help_text = u'' # avoid showing "None" in the admin
 
     def register(self, model_or_iterable, admin_class=None, **options):
         """
