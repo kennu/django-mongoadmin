@@ -49,6 +49,17 @@ class AdminSite(object):
         self._actions = {'delete_selected': actions.delete_selected}
         self._global_actions = self._actions.copy()
 
+    def _fix_model_for_admin(self, model):
+        if isinstance(model, TopLevelDocumentMetaclass):
+            # Add some attributes expected by Django to MongoEngine fields
+            for name, field in model._fields.items():
+                if not hasattr(field, 'rel'):
+                    field.rel = None
+                if not hasattr(field, 'flatchoices'):
+                    field.flatchoices = None
+                if not hasattr(field, 'verbose_name') or not field.verbose_name:
+                    field.verbose_name = name
+
     def register(self, model_or_iterable, admin_class=None, **options):
         """
         Registers the given model(s) with the given admin class.
@@ -79,6 +90,7 @@ class AdminSite(object):
             model_or_iterable = [model_or_iterable]
 
         for model in model_or_iterable:
+            self._fix_model_for_admin(model)
             if hasattr(model._meta, 'abstract') and model._meta.abstract:
                 raise ImproperlyConfigured('The model %s is abstract, so it '
                       'cannot be registered with admin.' % model.__name__)
