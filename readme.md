@@ -10,7 +10,7 @@ This a drop in replacement for the django admin that works with monodb. It uses 
 
  * Django >= 1.3
  * [mongoengine](http://mongoengine.org/) >= 0.6
- * [django-mongodbforms](https://github.com/jschrewe/django-mongodbforms)
+ * [django-mongodbforms](https://github.com/kennu/django-mongodbforms)
 
 ## Usage
 
