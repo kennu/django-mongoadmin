@@ -1,6 +1,10 @@
 django mongoadmin
 =================
 
+Note: This is a fork by Kenneth Falck <kennu@iki.fi> (https://github.com/kennu).
+This fork fixes some django-admin incompatibilities. There is also a similar forked
+version of django-mongodbforms that should be used together with this (see below).
+
 This a drop in replacement for the django admin that works with monodb.
 It uses the django admin stuff wherever possible and can be used
 together with normal django models and a SQL database.
@@ -10,7 +14,7 @@ Requirements
 
 -  Django >= 1.3
 -  `mongoengine <http://mongoengine.org/>`_
--  `django-mongodbforms <https://github.com/jschrewe/django-mongodbforms>`_
+-  `django-mongodbforms <https://github.com/kennu/django-mongodbforms>`_
 
 Usage
 -----
