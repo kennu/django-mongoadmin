@@ -803,7 +803,7 @@ class DocumentAdmin(BaseDocumentAdmin):
             'ordered_objects': ordered_objects,
             'form_url': mark_safe(form_url),
             'opts': opts,
-            #'content_type_id': ContentType.objects.get_for_model(self.model).id,
+            'content_type_id': self.content_type.id,
             'save_as': self.save_as,
             'save_on_top': self.save_on_top,
             'root_path': self.admin_site.root_path,
